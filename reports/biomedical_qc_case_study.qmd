@@ -1,0 +1,134 @@
+--- 
+title: "Biomedical Data Quality-Control Case Study Using R and Bash" 
+author: "Akash Bhardwaj" 
+date: today 
+ 
+format: 
+  html: 
+    toc: true 
+    toc-depth: 2 
+    theme: cosmo 
+    embed-resources: true 
+ 
+execute: 
+  echo: false 
+  warning: false 
+  message: false 
+--- 
+ 
+## Project objective 
+ 
+This educational project demonstrates a simple, reproducible biomedical data quality-control workflow using Bash and R. 
+ 
+The workflow checks a small example patient-measurement dataset for duplicate patient identifiers and missing values, creates a cleaned dataset, produces descriptive summaries and visualisations, and performs an exploratory statistical comparison. 
+ 
+## Dataset 
+ 
+The project uses a small simulated dataset containing: 
+ 
+- Patient identifier 
+- Study group: Control or Treatment 
+- Age 
+- Biomarker measurement 
+ 
+The dataset was deliberately created with two data-quality issues: 
+ 
+- A duplicated patient identifier: `P006` 
+- A missing age value: `P005` 
+ 
+This is a simulated educational dataset. It contains no real patient information and must not be treated as clinical evidence. 
+ 
+## Bash quality-control checks 
+ 
+A Bash script was used to check that the input file exists, count data rows, identify duplicate patient IDs, and identify rows containing missing values. 
+ 
+The script found: 
+ 
+- Total data rows: 7 
+- Duplicate patient ID: `P006` 
+- Row containing a missing value: `P005,Control,,11.5` 
+ 
+The Bash output was saved as: 
+ 
+```text 
+outputs/tables/qc_summary.txt 
+``` 
+ 
+## R data quality checks and cleaning 
+ 
+The dataset was loaded into R for further inspection and cleaning. 
+ 
+The R workflow identified: 
+ 
+- One missing value in the `age` variable 
+- Two rows associated with the duplicated patient ID `P006` 
+ 
+Cleaning decisions: 
+ 
+1. Retained the first record for each unique patient identifier. 
+2. Removed the record with a missing age value. 
+ 
+### Cleaning summary 
+ 
+- Raw rows: 7 
+- Rows after retaining one record per patient ID: 6 
+- Rows after removing the missing-age record: 5 
+ 
+## Descriptive summary 
+ 
+After cleaning: 
+ 
+- Control group: 2 patients 
+- Treatment group: 3 patients 
+- Mean biomarker value in the Control group: 11.6 
+- Mean biomarker value in the Treatment group: 15.4 
+ 
+### Biomarker distribution by group 
+ 
+![](../outputs/figures/biomarker_by_group_boxplot.png) 
+ 
+The figure is descriptive only. The sample size is too small to draw meaningful biomedical conclusions. 
+ 
+## Exploratory statistical comparison 
+ 
+A Welch two-sample t-test compared biomarker values between the cleaned Control and Treatment groups. 
+ 
+- Mean difference, Treatment minus Control: 3.77 
+- P-value: 0.0848 
+- 95% confidence interval: −9.23 to 1.70 
+ 
+The confidence interval includes zero and the p-value is above 0.05. Therefore, this small demonstration dataset does not provide statistically significant evidence of a biomarker difference between groups. 
+ 
+## Reproducibility 
+ 
+The project workflow can be reproduced by running the scripts in the following order. 
+ 
+First, run the Bash quality-control script from the project root: 
+ 
+```bash 
+chmod +x scripts/qc_summary.sh 
+./scripts/qc_summary.sh 
+``` 
+ 
+Then run the R scripts: 
+ 
+```text 
+scripts/01_r_data_qc.R 
+scripts/02_biomarker_group_comparison.R 
+``` 
+ 
+## Limitations 
+ 
+- This is a simulated educational dataset. 
+- The raw dataset contains only seven rows. 
+- The cleaned dataset contains only five records. 
+- The study groups contain only two and three observations. 
+- The statistical comparison is underpowered and included only to demonstrate the workflow. 
+- Real biomedical and clinical datasets require more extensive data-integrity, validation, privacy, and governance checks. 
+ 
+## Conclusion 
+ 
+This project demonstrates a basic quality-control workflow using Bash and R. It includes file checks, duplicate-ID detection, missing-value identification, data cleaning, descriptive summaries, visualisation, and an exploratory statistical comparison. 
+ 
+The project illustrates the importance of checking data quality before interpreting analytical results. 
+  

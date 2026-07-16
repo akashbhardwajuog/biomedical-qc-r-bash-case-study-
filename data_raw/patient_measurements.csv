@@ -1,0 +1,8 @@
+patient_id,group,age,biomarker 
+P001,Control,45,12.4 
+P002,Control,51,10.8 
+P003,Treatment,48,15.2 
+P004,Treatment,55,16.1 
+P005,Control,,11.5 
+P006,Treatment,60,14.8 
+P006,Treatment,60,14.8 

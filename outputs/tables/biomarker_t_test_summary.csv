@@ -1,0 +1,2 @@
+comparison,test,control_mean,treatment_mean,mean_difference,p_value,confidence_interval_lower,confidence_interval_upper
+Treatment versus Control,Welch two-sample t-test,11.600000000000001,15.366666666666667,3.7666666666666657,0.08475226524643141,-9.231352434664249,1.6980191013309174

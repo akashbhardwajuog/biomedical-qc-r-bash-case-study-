@@ -1,0 +1,11 @@
+Biomedical Data QC Summary
+==========================
+
+Input file: data_raw/patient_measurements.csv
+Total data rows: 7
+
+Duplicate patient IDs:
+P006
+
+Rows containing missing values:
+P005,Control,,11.5 
