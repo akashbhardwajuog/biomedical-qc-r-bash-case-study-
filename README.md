@@ -5,6 +5,8 @@
 This educational project demonstrates a simple, reproducible biomedical data quality-control workflow using Bash and R. 
  
 The analysis checks a small example patient-measurement dataset for duplicate patient identifiers and missing values, creates a cleaned dataset, produces descriptive summaries and visualisations, and performs an exploratory statistical comparison. 
+
+![Biomarker measurements by study group](outputs/figures/biomarker_by_group_boxplot.png)
  
 ## Dataset 
  
